@@ -13,14 +13,8 @@ public class BasicObject : MonoBehaviour
     {
         if (other.gameObject == player)
         {
-            PickUp();
+            player.GetComponent<PlayerInfo>().PickUp(this);
+            Destroy(this.gameObject);
         }
-    }
-
-    private void PickUp()
-    {
-        Debug.Log("Objeto recogido: " + gameObject.name);
-
-        Destroy(gameObject);
     }
 }

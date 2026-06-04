@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class PlayerInfo : MonoBehaviour
 {
-    [SerializeField] List<int> objetosObtenidos = new List<int>();
-    public void PickUp()
+    [SerializeField] List<BasicObject> objetosObtenidos = new List<BasicObject>();
+    public void PickUp(BasicObject objeto)
     {
-        objetosObtenidos.Add(1);
+        objetosObtenidos.Add(objeto);
         Debug.Log("obtuve un objeto, tengo: " + objetosObtenidos.ToArray().Length);
     }
 }
