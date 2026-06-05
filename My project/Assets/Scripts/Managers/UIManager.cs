@@ -6,7 +6,7 @@ public class UIManager : MonoBehaviour
 {
     [SerializeField] GameObject panelMainMenu;
     [SerializeField] GameObject panelOpciones;
-    [SerializeField] Slider sliderVolumen;
+    [SerializeField] AudioManager audioManager;
 
     private void Awake()
     {
@@ -28,4 +28,6 @@ public class UIManager : MonoBehaviour
     {
         Application.Quit();
     }
+
+    
 }
