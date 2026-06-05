@@ -1,16 +1,31 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UIElements;
 
 public class UIManager : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    [SerializeField] GameObject panelMainMenu;
+    [SerializeField] GameObject panelOpciones;
+    [SerializeField] Slider sliderVolumen;
 
-    // Update is called once per frame
-    void Update()
+    private void Awake()
     {
-        
+        DontDestroyOnLoad(this);
+    }
+    public void EnterOptions()
+    {
+        panelOpciones.SetActive(true);
+    }
+    public void ExitOptions() 
+    {
+        panelOpciones.SetActive(false);
+    }
+    public void StartGame() 
+    {
+        SceneManager.LoadScene("Level1");
+    }
+    public void CloseGame()
+    {
+        Application.Quit();
     }
 }
