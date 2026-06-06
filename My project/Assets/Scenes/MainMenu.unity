@@ -1191,6 +1191,7 @@ MonoBehaviour:
   panelMainMenu: {fileID: 1335714608}
   panelOpciones: {fileID: 1815879245}
   audioManager: {fileID: 1488461905}
+  presionarE: {fileID: 6765240536507463661, guid: b597a3c414c57db4d84685691c680dd3, type: 3}
 --- !u!1 &1081913123
 GameObject:
   m_ObjectHideFlags: 0
