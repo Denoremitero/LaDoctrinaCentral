@@ -1,0 +1,3 @@
+[submodule "LaDoctrinaCentral"]
+	path = LaDoctrinaCentral
+	url = https://github.com/Denoremitero/LaDoctrinaCentral.git
