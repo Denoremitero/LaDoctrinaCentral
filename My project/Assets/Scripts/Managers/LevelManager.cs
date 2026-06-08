@@ -2,25 +2,29 @@ using UnityEngine;
 
 public class LevelManager : MonoBehaviour
 {
+    [SerializeField] public GameplayUIManager gUIManager;
+
     public bool questActive;
     public bool questComplete;
 
     int cantidadObjetosTotales;
     int cantidadObjetosActuales;
-
     public void StartQuest()
     {
         questActive = true;
         cantidadObjetosTotales = GameObject.FindGameObjectsWithTag("ObjetoRecolectable").Length;
 
         Debug.Log("Inicio la quest, tienes que recolectar estos objetos: " + cantidadObjetosTotales);
+
+        gUIManager.ShowQuestLog();
     }
     public void CheckQuestStatus()
     {
         if (questActive && (cantidadObjetosActuales == cantidadObjetosTotales) && !questComplete)
         {
             questComplete = true;
-            GameOver();
+            gUIManager.CompletedObjective();
+            //GameOver();
         }
         else
         {

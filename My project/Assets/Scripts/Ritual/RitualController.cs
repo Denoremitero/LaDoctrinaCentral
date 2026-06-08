@@ -11,11 +11,17 @@ public class RitualController : MonoBehaviour
             if (levelManager.questActive)
             {
                 levelManager.CheckQuestStatus();
+                levelManager.gUIManager.ShowQuestLog();
             }
             else
             {
                 levelManager.StartQuest();
+                
             }
         }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        levelManager.gUIManager.HideQuestLog();
     }
 }
