@@ -1,14 +1,22 @@
+using System.Collections;
+using Unity.VectorGraphics;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
     [SerializeField] public GameplayUIManager gUIManager;
+    [SerializeField] GameObject gameOverCanvas;
 
     public bool questActive;
     public bool questComplete;
 
     int cantidadObjetosTotales;
     int cantidadObjetosActuales;
+    private void Start()
+    {
+        gameOverCanvas.SetActive(false);
+    }
     public void StartQuest()
     {
         questActive = true;
@@ -24,7 +32,7 @@ public class LevelManager : MonoBehaviour
         {
             questComplete = true;
             gUIManager.CompletedObjective();
-            //GameOver();
+            GameOverSecuence();
         }
         else
         {
@@ -38,8 +46,15 @@ public class LevelManager : MonoBehaviour
         
         
     }
+    IEnumerator GameOverSecuence()
+    {
+        GameOver();
+        yield return new WaitForSeconds(5);
+        SceneManager.LoadScene("MainMenu");
+    }
     void GameOver()
     {
+        gameOverCanvas.SetActive(true);
         Debug.Log("El juego termino");
     }
 }
