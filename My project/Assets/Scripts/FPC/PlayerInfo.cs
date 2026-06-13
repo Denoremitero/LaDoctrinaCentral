@@ -2,7 +2,6 @@ using NUnit.Framework;
 using System.Collections;
 using System.Collections.Generic;
 using System.Net.Http;
-using UnityEditor.Animations;
 using UnityEngine;
 
 public class PlayerInfo : MonoBehaviour
