@@ -33,7 +33,7 @@ public class LevelManager : MonoBehaviour
             Cursor.lockState = CursorLockMode.None;
             questComplete = true;
             gUIManager.CompletedObjective();
-            GameOverSecuence();
+            
         }
         else
         {
@@ -48,7 +48,7 @@ public class LevelManager : MonoBehaviour
         
         
     }
-    IEnumerator GameOverSecuence()
+    public IEnumerator GameOverSecuence()
     {
         GameOver();
         yield return new WaitForSeconds(5);

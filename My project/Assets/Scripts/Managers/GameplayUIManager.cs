@@ -6,6 +6,7 @@ public class GameplayUIManager : MonoBehaviour
 {
     [SerializeField] GameObject questLog;
     [SerializeField] List<string> objetivos = new List<string>();
+    [SerializeField] LevelManager levelManager;
 
     [SerializeField] TextMeshProUGUI objetivoTextDisplay;
 
@@ -20,6 +21,7 @@ public class GameplayUIManager : MonoBehaviour
     public int currentObjetivo = 0;
     public int currentKnownPhrases = 0;
     int currentCorrectAnswers = 0;
+    public bool rightAnswer = false;
     List<int> phrasesQuantityInput = new List<int>();
 
 
@@ -54,24 +56,31 @@ public class GameplayUIManager : MonoBehaviour
     }
     public void ButtonPhraseCompleter(int phraseIndex)
     {
+        phrasesQuantityInput.Add(phraseIndex);
+        Debug.Log("Input: " + phraseIndex);
+        Debug.Log(phrasesQuantityInput.Count);
         if (phrasesQuantityInput.Count == 3)
         {
-            OrderCheckForPhrases();
-        }
-        else 
-        {
-            phrasesQuantityInput.Add(phraseIndex);
+            rightAnswer = OrderCheckForPhrases();
+            Debug.Log(rightAnswer);
+            if (rightAnswer)
+            {
+                levelManager.StartCoroutine("GameOverSecuence");
+            }
         }
     }
     public bool OrderCheckForPhrases()
     {
-        
-        int i = 0;
+
+        /**int i = 0;
         foreach (int a in correctOrder)
         {
+            Debug.Log("Orden correcto: " + a);
+            Debug.Log("Input del usuario: " +phrasesQuantityInput[i]);
         if (a == phrasesQuantityInput[i])
         {
             currentCorrectAnswers++;
+            Debug.Log(currentCorrectAnswers);
         }
         else
         {
@@ -80,11 +89,24 @@ public class GameplayUIManager : MonoBehaviour
             return false;
         }
         }
-        if (currentCorrectAnswers == 2)
+        if (currentCorrectAnswers > 2)
             return true;
         else
             return false;
-        
+        **/
+        for (int i = 0; i < correctOrder.Length; i++)
+        {
+            if (correctOrder[i] != phrasesQuantityInput[i])
+            {
+                phrasesQuantityInput.Clear();
+                currentCorrectAnswers = 0;
+                return false;
+            }
+            currentCorrectAnswers++;
+            Debug.Log("input del usuario: " + phrasesQuantityInput[i]);
+            Debug.Log("Respuestas correctas: " + currentCorrectAnswers);
+        }
+        return currentCorrectAnswers == correctOrder.Length;
 
     }
     public void UpdatePhraseButton(string clipName)
