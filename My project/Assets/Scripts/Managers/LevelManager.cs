@@ -30,12 +30,14 @@ public class LevelManager : MonoBehaviour
     {
         if (questActive && (cantidadObjetosActuales == cantidadObjetosTotales) && !questComplete)
         {
+            Cursor.lockState = CursorLockMode.None;
             questComplete = true;
             gUIManager.CompletedObjective();
             GameOverSecuence();
         }
         else
         {
+            Cursor.lockState = CursorLockMode.Locked;
             int objetosFaltantes = cantidadObjetosTotales - cantidadObjetosActuales;
             Debug.Log("Faltan esta cantidad de objetos: " + objetosFaltantes);
         }
